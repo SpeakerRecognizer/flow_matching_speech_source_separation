@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="title" content="Flow Matching-Based Speech Source Separation with Best-of-N Biometric Sampling">
+  <meta name="description" content="Demo page for a conditional flow matching speech source separation system with biometric Best-of-N sampling and chunk-level speaker alignment.">
+  <meta name="keywords" content="speech source separation, flow matching, speaker recognition, Libri2Mix, VoxConverse, best-of-N sampling">
+  <meta name="author" content="Anastasia Zorkina, Alexandr Anikin, Nikita Khmelev, Anastasiya Korenevskaya, Sergey Novoselov, Vladimir Volokhov, Maxim Korenevsky, Yuriy Matveev">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Flow Matching Speech Separation Demo">
+  <meta property="og:title" content="Flow Matching-Based Speech Source Separation with Best-of-N Biometric Sampling">
+  <meta property="og:description" content="Conditional flow matching for ordered two-speaker separation with biometric candidate selection and long-form channel tracking.">
+  <meta property="og:url" content="https://example.org/flow-matching-separation">
+  <meta property="og:image" content="static/images/training-pipeline.png">
+  <meta property="og:image:alt" content="Training pipeline for flow matching speech source separation">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Flow Matching-Based Speech Source Separation with Best-of-N Biometric Sampling">
+  <meta name="twitter:description" content="Demo page for flow matching-based speech source separation.">
+  <meta name="twitter:image" content="static/images/training-pipeline.png">
+
+  <meta name="citation_title" content="Flow Matching-Based Speech Source Separation with Best-of-N Biometric Sampling">
+  <meta name="citation_author" content="Zorkina, Anastasia">
+  <meta name="citation_author" content="Anikin, Alexandr">
+  <meta name="citation_author" content="Khmelev, Nikita">
+  <meta name="citation_author" content="Korenevskaya, Anastasiya">
+  <meta name="citation_author" content="Novoselov, Sergey">
+  <meta name="citation_author" content="Volokhov, Vladimir">
+  <meta name="citation_author" content="Korenevsky, Maxim">
+  <meta name="citation_author" content="Matveev, Yuriy">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="ICML 2026 Workshop on Machine Learning for Audio">
+  <meta name="citation_pdf_url" content="http://arxiv.org/pdf/2607.06088">
+
+  <meta name="theme-color" content="#2563eb">
+  <title>Flow Matching-Based Speech Source Separation with Best-of-N Biometric Sampling</title>
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Flow Matching-Based Speech Source Separation with Best-of-N Biometric Sampling",
+    "description": "A conditional flow matching speech separator with speaker-encoder ordering, biometric Best-of-N candidate selection, and chunk-level channel tracking.",
+    "author": [
+      {"@type": "Person", "name": "Anastasia Zorkina"},
+      {"@type": "Person", "name": "Alexandr Anikin"},
+      {"@type": "Person", "name": "Nikita Khmelev"},
+      {"@type": "Person", "name": "Anastasiya Korenevskaya"},
+      {"@type": "Person", "name": "Sergey Novoselov"},
+      {"@type": "Person", "name": "Vladimir Volokhov"},
+      {"@type": "Person", "name": "Maxim Korenevsky"},
+      {"@type": "Person", "name": "Yuriy Matveev"}
+    ],
+    "datePublished": "2026-01-01",
+    "publisher": {
+      "@type": "Organization",
+      "name": "ICML 2026 Workshop on Machine Learning for Audio"
+    },
+    "url": "https://example.org/flow-matching-separation",
+    "image": "static/images/training-pipeline.png",
+    "keywords": ["speech source separation", "flow matching", "speaker recognition", "best-of-N sampling"],
+    "isAccessibleForFree": true
+  }
+  </script>
+</head>
+<body>
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content">
+    <section class="hero publication-header">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">Flow Matching-Based Speech Source Separation with Best-of-N Biometric Sampling</h1>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">Anastasia Zorkina,</span>
+                <span class="author-block">Alexandr Anikin,</span>
+                <span class="author-block">Nikita Khmelev,</span>
+                <span class="author-block">Anastasiya Korenevskaya,</span>
+                <span class="author-block">Sergey Novoselov,</span>
+                <span class="author-block">Vladimir Volokhov,</span>
+                <span class="author-block">Maxim Korenevsky,</span>
+                <span class="author-block">Yuriy Matveev</span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">ITMO University and Speech Technology Center Ltd.</span>
+                <span class="publication-venue">ICML 2026 Workshop on Machine Learning for Audio</span>
+              </div>
+
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="http://arxiv.org/pdf/2607.06088" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="http://arxiv.org/abs/2607.06088" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="ai ai-arxiv"></i></span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#audio-samples" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-headphones"></i></span>
+                    <span>Audio Samples</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#BibTeX" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-quote-right"></i></span>
+                    <span>BibTeX</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <figure class="publication-banner">
+            <img src="static/images/training-pipeline.png" alt="Training pipeline of the proposed conditional flow matching demixer" loading="eager">
+          </figure>
+          <h2 class="subtitle has-text-centered">
+            Speaker embeddings define a deterministic source order during training and drive Best-of-N candidate selection and cross-chunk channel alignment at inference time.
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Single-channel speech separation remains challenging for real-world deployment due to source permutation ambiguity, sampling variability of generative models, and the difficulty of processing long recordings with chunk-wise inference. We address these issues with a conditional flow-matching-based method that produces an ordered two-source output conditioned on the mixture. A frozen speaker encoder defines the source order during training and is reused at inference for biometric best-of-N candidate selection and chunk-level channel alignment. We evaluate separation quality on Libri2Mix benchmark using SI-SDR, PESQ, and ESTOI, and measure downstream impact using cpWER for automatic speech recognition and EER for speaker verification. The results show that the proposed Transformer U-Net variant is competitive with strong baselines in objective separation metrics and achieves the lowest downstream automatic speech recognition and speaker verification error rates in all evaluated settings.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3 has-text-centered">Method Overview</h2>
+          <div id="method-carousel" class="carousel results-carousel">
+            <div class="item">
+              <img src="static/images/training-pipeline.png" alt="Training scheme" loading="lazy">
+              <h2 class="subtitle has-text-centered">
+                Training: biometric source ordering replaces permutation-invariant target ambiguity with a deterministic regression target.
+              </h2>
+            </div>
+            <div class="item">
+              <img src="static/images/inference-pipeline.png" alt="Inference scheme" loading="lazy">
+              <h2 class="subtitle has-text-centered">
+                Inference: overlapping chunks are separated, selected by biometric Best-of-N, aligned by speaker centroids, and reconstructed by overlap-add.
+              </h2>
+            </div>
+            <div class="item">
+              <img src="static/images/best-of-n.png" alt="Best-of-N selection curves" loading="lazy">
+              <h2 class="subtitle has-text-centered">
+                Best-of-N: the biometric criterion approaches SI-SDR oracle selection without access to ground-truth references.
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light" id="results">
+      <div class="container">
+        <h2 class="title is-3 has-text-centered">Results</h2>
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <div class="table-container project-table">
+              <table class="table is-fullwidth is-striped is-hoverable">
+                <caption>Objective separation metrics on Libri2Mix. Values are clean / both.</caption>
+                <thead>
+                  <tr>
+                    <th>Model</th>
+                    <th>SI-SDR <span class="metric-direction higher">↑</span></th>
+                    <th>PESQ <span class="metric-direction higher">↑</span></th>
+                    <th>ESTOI <span class="metric-direction higher">↑</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>ConvUnet (ours)</td><td>14.42 / 9.28</td><td>2.64 / 1.65</td><td>0.90 / 0.75</td></tr>
+                  <tr class="is-selected-row"><td>TUnet (ours)</td><td>17.30 / 11.25</td><td>3.11 / 1.92</td><td>0.93 / 0.79</td></tr>
+                  <tr><td>DiffSep</td><td>9.60 / -</td><td>2.58 / -</td><td>0.78 / -</td></tr>
+                  <tr><td>SepReformer (chunk)</td><td>11.30 / -</td><td>2.45 / -</td><td>0.88 / -</td></tr>
+                  <tr><td>SepReformer (full)</td><td>19.22 / 13.70</td><td>3.02 / 2.14</td><td>0.92 / 0.83</td></tr>
+                  <tr><td>MeanFlow-TSE (full)</td><td>17.56 / 11.68</td><td>3.27 / 2.18</td><td>0.91 / 0.80</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-container project-table">
+              <table class="table is-fullwidth is-striped is-hoverable">
+                <caption>Downstream ASR and speaker verification on Libri2Mix clean.</caption>
+                <thead>
+                  <tr>
+                    <th>Model</th>
+                    <th>Whisper V3 cpWER <span class="metric-direction lower">↓</span></th>
+                    <th>Parakeet cpWER <span class="metric-direction lower">↓</span></th>
+                    <th>ResNet EER <span class="metric-direction lower">↓</span></th>
+                    <th>Wav2Vec 2.0 EER <span class="metric-direction lower">↓</span></th>
+                    <th>DistilWhisper EER <span class="metric-direction lower">↓</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>ConvUnet (ours)</td><td>4.99</td><td>25.51</td><td>3.17</td><td>0.51</td><td>1.28</td></tr>
+                  <tr class="is-selected-row"><td>TUnet (ours)</td><td>3.84</td><td>21.31</td><td>2.81</td><td>0.39</td><td>1.05</td></tr>
+                  <tr><td>MeanFlow-TSE (full)</td><td>9.05</td><td>24.84</td><td>4.61</td><td>2.94</td><td>3.25</td></tr>
+                  <tr><td>SepReformer (full)</td><td>5.02</td><td>-</td><td>2.92</td><td>0.72</td><td>1.29</td></tr>
+                  <tr><td>SepReformer (chunk)</td><td>12.90</td><td>-</td><td>3.76</td><td>1.45</td><td>1.97</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="audio-samples">
+      <div class="container">
+        <h2 class="title is-3 has-text-centered">Audio Results</h2>
+        <div class="content has-text-centered">
+          <p>
+            Audio files are placeholders for now. Add WAV files into the prepared folders and the players below will work without changing the page.
+          </p>
+          <p class="dataset-links">
+            <a href="https://github.com/JorisCos/LibriMix" target="_blank">Libri2Mix dataset</a>
+            <a href="https://www.robots.ox.ac.uk/~vgg/data/voxconverse/" target="_blank">VoxConverse dataset</a>
+          </p>
+        </div>
+
+        <div class="sample-block">
+          <h3 class="title is-4">Libri2Mix</h3>
+          <div class="sample-table" data-dataset="libri2mix"></div>
+        </div>
+
+        <div class="sample-block">
+          <h3 class="title is-4">VoxConverse</h3>
+          <div class="sample-table" data-dataset="voxconverse"></div>
+        </div>
+
+        <div class="sample-block">
+          <h3 class="title is-4">Real Recording</h3>
+          <div class="sample-table" data-dataset="realRecorded"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <div class="bibtex-header">
+          <h2 class="title">BibTeX</h2>
+          <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <pre id="bibtex-code"><code>@inproceedings{zorkina2026flowmatchingseparation,
+  title     = {Flow Matching-Based Speech Source Separation with Best-of-N Biometric Sampling},
+  author    = {Zorkina, Anastasia and Anikin, Alexandr and Khmelev, Nikita and Korenevskaya, Anastasiya and Novoselov, Sergey and Volokhov, Vladimir and Korenevsky, Maxim and Matveev, Yuriy},
+  booktitle = {ICML 2026 Workshop on Machine Learning for Audio},
+  year      = {2026},
+  url       = {http://arxiv.org/abs/2607.06088}
+}</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>
+              This page was built using the
+              <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>,
+              adapted for speech separation demos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
